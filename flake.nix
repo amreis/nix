@@ -20,6 +20,15 @@
           pkgs.vscode
         ];
 
+      # Manage Homebrew with Nix
+      homebrew = {
+        enable = true;
+	vscode = [
+          "ms-python.python"
+          "charliermarsh.ruff"
+        ];
+      };
+
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
@@ -28,6 +37,10 @@
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
+
+      # Set primary user, since some configs apply to that user
+      # but the rebuild command runs as root.
+      system.primaryUser = "alister";
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;

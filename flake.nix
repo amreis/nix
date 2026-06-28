@@ -38,6 +38,10 @@
 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
+      programs.zsh = {
+        enable = true;
+        enableSyntaxHighlighting = true;
+      };
 
       # Set primary user, since some configs apply to that user
       # but the rebuild command runs as root.

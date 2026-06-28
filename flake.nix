@@ -16,7 +16,6 @@
         [ pkgs.vim
           pkgs.git
           pkgs.clang
-          pkgs.ghostty-bin
           pkgs.uv
           pkgs.vscode
           pkgs.rustup
@@ -25,10 +24,14 @@
       # Manage Homebrew with Nix
       homebrew = {
         enable = true;
+        casks = [
+          "ghostty"
+        ];
 	vscode = [
           "ms-python.python"
           "charliermarsh.ruff"
         ];
+        cargoPackages = [ "ripgrep" ];
       };
 
       # Necessary for using flakes on this system.

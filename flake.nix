@@ -16,6 +16,7 @@
         [ pkgs.vim
           pkgs.git
           pkgs.clang
+          pkgs.ghostty-bin
           pkgs.uv
           pkgs.vscode
           pkgs.rustup

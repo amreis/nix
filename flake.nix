@@ -18,6 +18,7 @@
           pkgs.clang
           pkgs.uv
           pkgs.vscode
+          pkgs.rustup
         ];
 
       # Manage Homebrew with Nix

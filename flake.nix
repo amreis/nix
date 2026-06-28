@@ -47,6 +47,17 @@
         enableSyntaxHighlighting = true;
       };
 
+      # TMUX
+      programs.tmux = {
+        enable = true;
+        enableSensible = true;
+      };
+      
+      programs.vim = {
+        enable = true;
+        enableSensible = true;
+      };
+
       # Set primary user, since some configs apply to that user
       # but the rebuild command runs as root.
       system.primaryUser = "alister";

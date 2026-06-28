@@ -15,6 +15,8 @@
       environment.systemPackages =
         [ pkgs.vim
           pkgs.git
+          pkgs.clang
+          pkgs.uv
         ];
 
       # Necessary for using flakes on this system.

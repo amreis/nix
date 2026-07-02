@@ -33,7 +33,6 @@
           "tamasfe.even-better-toml"
           "ms-toolsai.jupyter"
         ];
-        cargoPackages = [ "ripgrep" ];
       };
 
       # Necessary for using flakes on this system.
@@ -80,9 +79,6 @@
       system.defaults.dock.mru-spaces = false;
       system.defaults.finder.FXPreferredViewStyle = "clmv";
       system.defaults.finder.ShowPathbar = true;
-
-
-
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";

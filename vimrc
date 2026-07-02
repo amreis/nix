@@ -143,7 +143,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 try
-    colorscheme desert
+    colorscheme vscode
 catch
 endtry
 

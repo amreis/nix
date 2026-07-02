@@ -12,7 +12,7 @@
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-      environment.systemPackages =
+    environment.systemPackages =
         [ pkgs.vim
           pkgs.git
           pkgs.clang
@@ -27,10 +27,11 @@
         casks = [
           "ghostty"
         ];
-	vscode = [
+      vscode = [
           "ms-python.python"
           "charliermarsh.ruff"
           "tamasfe.even-better-toml"
+          "ms-toolsai.jupyter"
         ];
         cargoPackages = [ "ripgrep" ];
       };
@@ -53,10 +54,11 @@
         enable = true;
         enableSensible = true;
       };
-      
+
       programs.vim = {
         enable = true;
         enableSensible = true;
+        vimConfig = (builtins.readFile ./vimrc);
       };
 
       # Set primary user, since some configs apply to that user

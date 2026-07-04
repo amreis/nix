@@ -76,7 +76,6 @@
 
       # Use TouchID for sudo
       security.pam.services.sudo_local.touchIdAuth = true;
-      system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
       system.defaults.controlcenter.BatteryShowPercentage = true;
       system.defaults.dock.expose-animation-duration = 0.3;
       system.defaults.dock.mru-spaces = false;

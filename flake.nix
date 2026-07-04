@@ -19,6 +19,7 @@
           pkgs.uv
           pkgs.vscode
           pkgs.rustup
+          pkgs.texliveFull
         ];
 
       # Manage Homebrew with Nix
@@ -32,6 +33,7 @@
           "charliermarsh.ruff"
           "tamasfe.even-better-toml"
           "ms-toolsai.jupyter"
+          "James-Yu.latex-workshop"
         ];
       };
 

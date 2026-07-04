@@ -20,6 +20,7 @@
           pkgs.vscode
           pkgs.rustup
           pkgs.texliveFull
+          pkgs.ripgrep
         ];
 
       # Manage Homebrew with Nix

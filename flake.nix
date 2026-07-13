@@ -29,13 +29,16 @@
         casks = [
           "ghostty"
         ];
-      vscode = [
+        vscode = [
           "ms-python.python"
           "charliermarsh.ruff"
           "tamasfe.even-better-toml"
           "ms-toolsai.jupyter"
           "James-Yu.latex-workshop"
         ];
+        masApps = {
+          "The Unarchiver" = 425424353;
+        };
       };
 
       # Necessary for using flakes on this system.

@@ -36,9 +36,6 @@
           "ms-toolsai.jupyter"
           "James-Yu.latex-workshop"
         ];
-        masApps = {
-          "The Unarchiver" = 425424353;
-        };
       };
 
       # Necessary for using flakes on this system.

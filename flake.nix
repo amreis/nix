@@ -35,6 +35,7 @@
           "tamasfe.even-better-toml"
           "ms-toolsai.jupyter"
           "James-Yu.latex-workshop"
+          "streetsidesoftware.code-spell-checker"
         ];
       };
 

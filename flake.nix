@@ -77,15 +77,28 @@
 
       # Use TouchID for sudo
       security.pam.services.sudo_local.touchIdAuth = true;
-      system.defaults.NSGlobalDomain.AppleShowAllExtensions = false;
-      system.defaults.NSGlobalDomain.InitialKeyRepeat = 10;
-      system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;
-      system.defaults.NSGlobalDomain.KeyRepeat = 1;
-      system.defaults.controlcenter.BatteryShowPercentage = true;
-      system.defaults.dock.expose-animation-duration = 0.3;
-      system.defaults.dock.mru-spaces = false;
-      system.defaults.finder.FXPreferredViewStyle = "clmv";
-      system.defaults.finder.ShowPathbar = true;
+      system.defaults = {
+        NSGlobalDomain = {
+          AppleShowAllExtensions = false;
+          InitialKeyRepeat = 10;
+          ApplePressAndHoldEnabled = false;
+          KeyRepeat = 1;
+        };
+
+        dock = {
+          expose-animation-duration = 0.3;
+          mru-spaces = false;
+          autohide = true;
+        };
+
+        controlcenter.BatteryShowPercentage = true;
+
+        finder = {
+          FXPreferredViewStyle = "Nlsv";
+          ShowPathbar = true;
+        };
+
+      };
 
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";

@@ -17,6 +17,7 @@
           pkgs.git
           pkgs.clang
           pkgs.uv
+          pkgs.typst
           pkgs.vscode
           pkgs.rustup
           pkgs.texliveFull
@@ -82,7 +83,7 @@
           AppleShowAllExtensions = false;
           InitialKeyRepeat = 10;
           ApplePressAndHoldEnabled = false;
-          KeyRepeat = 1;
+          KeyRepeat = 2;
         };
 
         dock = {

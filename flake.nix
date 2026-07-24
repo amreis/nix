@@ -22,6 +22,8 @@
           pkgs.rustup
           pkgs.texliveFull
           pkgs.ripgrep
+          pkgs.pnpm
+          pkgs.fnm
         ];
 
       # Manage Homebrew with Nix

@@ -22,6 +22,8 @@
           pkgs.rustup
           pkgs.texliveFull
           pkgs.ripgrep
+          pkgs.gcc
+          pkgs.gnat15  # for Ada
         ];
 
       # Manage Homebrew with Nix
@@ -37,6 +39,7 @@
           "ms-toolsai.jupyter"
           "James-Yu.latex-workshop"
           "streetsidesoftware.code-spell-checker"
+          "AdaCore.ada"
         ];
       };
 

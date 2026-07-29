@@ -12,17 +12,28 @@
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
-    environment.systemPackages =
-        [ pkgs.vim
-          pkgs.git
-          pkgs.clang
-          pkgs.uv
-          pkgs.typst
-          pkgs.vscode
-          pkgs.rustup
-          pkgs.texliveFull
-          pkgs.ripgrep
-        ];
+      environment.systemPackages =
+          [ pkgs.vim
+            pkgs.git
+            pkgs.clang
+            pkgs.uv
+            pkgs.typst
+            pkgs.vscode
+            pkgs.rustup
+            pkgs.texliveFull
+            pkgs.ripgrep
+            pkgs.ruby
+            pkgs.libllvm  # some ruby gems need `dsymutil` to compile
+            pkgs.pkg-config # Critical for native gem extensions to find dependencies
+            pkgs.openssl
+            pkgs.openssl.dev
+          ];
+
+      # Some env vars for ruby to be able to find openssl
+      environment.variables = {
+        PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+        RUBY_CONFIGURE_OPTS = "--with-openssl-dir=${pkgs.openssl.dev}";
+      };
 
       # Manage Homebrew with Nix
       homebrew = {

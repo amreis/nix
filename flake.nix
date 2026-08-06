@@ -7,9 +7,13 @@
       url = "github:nix-darwin/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -37,11 +41,13 @@
         RUBY_CONFIGURE_OPTS = "--with-openssl-dir=${pkgs.openssl.dev}";
       };
 
+
       # Manage Homebrew with Nix
       homebrew = {
         enable = true;
         casks = [
           "ghostty"
+          "visual-studio-code"
         ];
         vscode = [
           "ms-python.python"
@@ -50,6 +56,7 @@
           "ms-toolsai.jupyter"
           "James-Yu.latex-workshop"
           "streetsidesoftware.code-spell-checker"
+          "bbenoist.Nix"
         ];
 
         onActivation.cleanup = "uninstall";
@@ -72,12 +79,6 @@
       programs.tmux = {
         enable = true;
         enableSensible = true;
-      };
-
-      programs.vim = {
-        enable = true;
-        enableSensible = true;
-        vimConfig = (builtins.readFile ./vimrc);
       };
 
       # Set primary user, since some configs apply to that user
@@ -116,11 +117,51 @@
 
       };
 
+      users.users.alister = {
+        name = "alister";
+        home = "/Users/alister";
+      };
+
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
 
       # using Determinate, disable nix's own management
       nix.enable = false;
+    };
+    homeconfig = {pkgs, ...}: {
+      # From https://davi.sh/blog/2024/02/nix-home-manager/
+
+      # Shouldn't be changed!!!
+      home.stateVersion = "26.05";
+
+      # Let home-manager install and manage itself
+      programs.home-manager.enable = true;
+
+      home.packages = with pkgs; [];
+
+      home.sessionVariables = {
+        EDITOR = "vim";
+      };
+
+      home.file.".vimrc".source = ./vimrc;
+
+      programs.zsh = {
+        enable = true;
+        shellAliases = {
+          switch = "sudo darwin-rebuild switch --flake ~/nix-darwin-config";
+        };
+      };
+
+      programs.git = {
+        enable = true;
+        userName = "Alister Machado";
+        userEmail = "alister.reis@gmail.com";
+        ignores = [ ".DS_Store" ];
+        extraConfig = {
+            init.defaultBranch = "main";
+            push.autoSetupRemote = true;
+        };
+      };
     };
   in
   {
@@ -129,6 +170,12 @@
     darwinConfigurations."Pharloom" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
+        home-manager.darwinModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.verbose = true;
+          home-manager.users.alister = homeconfig;
+        }
       ];
     };
   };

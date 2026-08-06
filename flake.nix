@@ -1,10 +1,12 @@
 {
-  description = "Example nix-darwin system flake";
+  description = "My Nix-Darwin config for Pharloom";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs }:
@@ -49,6 +51,8 @@
           "James-Yu.latex-workshop"
           "streetsidesoftware.code-spell-checker"
         ];
+
+        onActivation.cleanup = "uninstall";
       };
 
       # Necessary for using flakes on this system.

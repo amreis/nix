@@ -11,9 +11,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
@@ -154,13 +155,13 @@
 
       programs.git = {
         enable = true;
-        userName = "Alister Machado";
-        userEmail = "alister.reis@gmail.com";
-        ignores = [ ".DS_Store" ];
-        extraConfig = {
-            init.defaultBranch = "main";
-            push.autoSetupRemote = true;
+        settings = {
+          user.name = "Alister Machado";
+          user.email = "alister.reis@gmail.com";
+          init.defaultBranch = "main";
+          push.autoSetupRemote = true;
         };
+        ignores = [ ".DS_Store" ];
       };
     };
   in
@@ -170,11 +171,15 @@
     darwinConfigurations."Pharloom" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
+        mac-app-util.darwinModules.default
         home-manager.darwinModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.verbose = true;
           home-manager.users.alister = homeconfig;
+          home-manager.sharedModules = [
+            mac-app-util.homeManagerModules.default
+          ];
         }
       ];
     };

@@ -33,14 +33,15 @@
 " Sets how many lines of history VIM has to remember
 set history=500
 
+" Enable filetype plugins
+filetype plugin on
+filetype indent on
+
 set number
 set nocompatible
 set et sw=2 ts=2
 set bs=indent,start
 
-" Enable filetype plugins
-filetype plugin on
-filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -188,8 +189,8 @@ set expandtab
 set smarttab
 
 " 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+" set shiftwidth=4
+" set tabstop=4
 
 " Linebreak on 500 characters
 set lbr

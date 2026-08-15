@@ -170,6 +170,8 @@
           };
           ignores = [ ".DS_Store" ];
         };
+
+        programs.discord.enable = true;
       };
     in
     {

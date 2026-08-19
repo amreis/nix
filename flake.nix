@@ -153,25 +153,27 @@
 
         home.file.".vimrc".source = ./vimrc;
 
-        programs.zsh = {
-          enable = true;
-          shellAliases = {
-            switch = "sudo darwin-rebuild switch --flake ~/nix-darwin-config";
+        programs = {
+          zsh = {
+            enable = true;
+            shellAliases = {
+              switch = "sudo darwin-rebuild switch --flake ~/.config/nix";
+            };
           };
-        };
 
-        programs.git = {
-          enable = true;
-          settings = {
-            user.name = "Alister Machado";
-            user.email = "alister.reis@gmail.com";
-            init.defaultBranch = "main";
-            push.autoSetupRemote = true;
+          git = {
+            enable = true;
+            settings = {
+              user.name = "Alister Machado";
+              user.email = "alister.reis@gmail.com";
+              init.defaultBranch = "main";
+              push.autoSetupRemote = true;
+            };
+            ignores = [ ".DS_Store" ];
           };
-          ignores = [ ".DS_Store" ];
-        };
 
-        programs.discord.enable = true;
+          discord.enable = true;
+        };
       };
     in
     {

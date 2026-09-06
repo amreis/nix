@@ -174,6 +174,11 @@
           };
 
           discord.enable = true;
+
+          fzf = {
+            enable = true;
+            enableZshIntegration = true;
+          };
         };
       };
     in

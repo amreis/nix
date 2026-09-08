@@ -43,6 +43,7 @@
           pkgs.openssl.dev
           pkgs.nixfmt
           pkgs.telegram-desktop
+          pkgs.tree
         ];
 
         # Some env vars for ruby to be able to find openssl

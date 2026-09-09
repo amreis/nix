@@ -44,6 +44,7 @@
           pkgs.nixfmt
           pkgs.telegram-desktop
           pkgs.tree
+          pkgs.fnm
         ];
 
         # Some env vars for ruby to be able to find openssl
@@ -55,6 +56,7 @@
         # Manage Homebrew with Nix
         homebrew = {
           enable = true;
+          brews = [ "arxiv_latex_cleaner" ];
           casks = [
             "ghostty"
             "visual-studio-code"

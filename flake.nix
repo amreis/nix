@@ -163,6 +163,9 @@
             shellAliases = {
               switch = "sudo darwin-rebuild switch --flake ~/.config/nix";
             };
+            profileExtra = ''
+            eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+            '';
           };
 
           git = {

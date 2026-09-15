@@ -11,7 +11,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mac-app-util.url = "github:hraban/mac-app-util";
+    mac-app-util = {
+        url = "github:hraban/mac-app-util";
+        inputs.nixpkgs.follows = "nixpkgs";  # temporarily override nixpkgs url to get SBCL v2.6.6
+    };
   };
 
   outputs =

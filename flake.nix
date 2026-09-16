@@ -11,10 +11,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mac-app-util = {
-        url = "github:hraban/mac-app-util";
-        inputs.nixpkgs.follows = "nixpkgs";  # temporarily override nixpkgs url to get SBCL v2.6.6
-    };
   };
 
   outputs =
@@ -23,7 +19,6 @@
       nix-darwin,
       nixpkgs,
       home-manager,
-      mac-app-util,
     }:
     let
       configuration = { pkgs, ... }: {
@@ -62,7 +57,6 @@
           brews = [ "arxiv_latex_cleaner" ];
           casks = [
             "ghostty"
-            "visual-studio-code"
           ];
           vscode = [
             "ms-python.python"
@@ -197,16 +191,12 @@
       darwinConfigurations."Pharloom" = nix-darwin.lib.darwinSystem {
         modules = [
           configuration
-          mac-app-util.darwinModules.default
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.verbose = true;
             home-manager.users.alister = homeconfig;
-            home-manager.sharedModules = [
-              mac-app-util.homeManagerModules.default
-            ];
           }
         ];
       };

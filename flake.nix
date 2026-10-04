@@ -66,6 +66,7 @@
             "James-Yu.latex-workshop"
             "streetsidesoftware.code-spell-checker"
             "bbenoist.Nix"
+            "ms-vscode.cpptools-extension-pack"
           ];
 
           onActivation.cleanup = "uninstall";
